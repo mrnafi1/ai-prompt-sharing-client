@@ -1,0 +1,38 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* ---------------------------------------------------
+   Design tokens — "prompt_" identity
+   Subject: a console where people type prompts to AI tools.
+   Signature element: the blinking text-cursor, used in the
+   wordmark and as an accent on key interactive moments.
+--------------------------------------------------- */
+@theme {
+  --color-paper: #eef0f4;       /* app background — cool slate paper, not warm cream */
+  --color-surface: #ffffff;     /* cards / panels */
+  --color-ink: #15171c;         /* primary text */
+  --color-ink-muted: #62666f;   /* secondary text */
+  --color-border: #e1e4ea;      /* hairline borders */
+  --color-accent: #f2a33d;      /* amber cursor-glow — CTAs, active states */
+  --color-accent-ink: #7a4a02;  /* accent text on light surfaces */
+  --color-role: #5b6cff;        /* indigo — creator/admin badges, links */
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+/* blinking cursor used in the wordmark / hero */
+@keyframes blink-cursor {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink-cursor 1s steps(1) infinite;
+}
