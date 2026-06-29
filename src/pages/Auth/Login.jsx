@@ -20,7 +20,8 @@ const Login = () => {
   const onSubmit = async ({ email, password }) => {
     try {
       await signIn(email, password);
-      await axiosSecure.post("/jwt", { email });
+      const { data } = await axiosSecure.post("/jwt", { email });
+      localStorage.setItem("access-token", data.token);
       toast.success("Welcome back");
       navigate(from, { replace: true });
     } catch (err) {
@@ -41,7 +42,8 @@ const Login = () => {
         subscription: "Free",
         createdAt: new Date(),
       });
-      await axiosSecure.post("/jwt", { email });
+      const { data } = await axiosSecure.post("/jwt", { email });
+      localStorage.setItem("access-token", data.token);
       toast.success("Welcome back");
       navigate(from, { replace: true });
     } catch (err) {

@@ -197,9 +197,12 @@ const PromptDetails = () => {
             <div key={r._id} className="rounded-lg border border-border bg-paper p-3">
               <div className="flex items-center justify-between">
                 <p className="font-mono text-xs text-accent-ink">{"★".repeat(r.rating)}</p>
-                <p className="font-mono text-xs text-ink-muted">{r.name}</p>
+                <p className="font-mono text-xs text-ink-muted">
+                  {new Date(r.date).toLocaleDateString()}
+                </p>
               </div>
               <p className="mt-1 text-sm text-ink">{r.comment}</p>
+              <p className="mt-1 font-mono text-xs text-ink-muted">{r.name} · {r.email}</p>
             </div>
           ))}
         </div>

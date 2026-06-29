@@ -18,7 +18,7 @@ const Register = () => {
   } = useForm();
 
   // Persists the user to the DB (idempotent — server checks for an existing
-  // email before inserting) and issues the JWT cookie for this session.
+  // email before inserting) and stores the JWT for this session.
   const persistAndAuthenticate = async ({ name, email, photoURL }) => {
     await axiosSecure.post("/users", {
       name,
@@ -28,7 +28,8 @@ const Register = () => {
       subscription: "Free",
       createdAt: new Date(),
     });
-    await axiosSecure.post("/jwt", { email });
+    const { data } = await axiosSecure.post("/jwt", { email });
+    localStorage.setItem("access-token", data.token);
   };
 
   const onSubmit = async ({ name, email, photoURL, password }) => {
